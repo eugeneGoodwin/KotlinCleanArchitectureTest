@@ -10,7 +10,7 @@ class PostsViewModel @Inject constructor(private val getPosts : GetPosts) : Base
 
     var posts : MutableLiveData<List<DPost>> = MutableLiveData()
 
-    fun loadPosts() = getPosts(None()) { it.fold(::handleFailure, ::handlePostsList)}
+    fun loadPosts() = getPosts(scope, None()) { it.fold(::handleFailure, ::handlePostsList)}
 
     private fun handlePostsList(dposts : List<DPost>) {
         this.posts.value = dposts

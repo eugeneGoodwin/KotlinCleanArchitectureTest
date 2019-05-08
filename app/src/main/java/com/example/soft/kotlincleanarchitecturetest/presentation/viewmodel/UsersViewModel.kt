@@ -10,7 +10,7 @@ class UsersViewModel @Inject constructor(private val getUsers : GetUsers) : Base
 
     var users : MutableLiveData<List<DUser>> = MutableLiveData()
 
-    fun loadUsers() = getUsers(UseCase.None()) { it.fold(::handleFailure, ::handleUsersList)}
+    fun loadUsers() = getUsers(scope, UseCase.None()) { it.fold(::handleFailure, ::handleUsersList)}
 
     private fun handleUsersList(dusers : List<DUser>) {
         this.users.value = dusers
